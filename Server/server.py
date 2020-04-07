@@ -84,6 +84,7 @@ def ServerGet(g):
         GetRunS = open(ruta, "rb")
         #objeto hash
         h = hashlib.sha1()
+        tiempo_inicio=time.time()
         while check != 0:
             RunS = GetRunS.read(4096)
             s.sendto(RunS, clientAddr)
@@ -93,6 +94,7 @@ def ServerGet(g):
             print("Numero de fragmento:" + str(c))
             print("Enviando...")
             
+        tiempo_final = round(time.time() - tiempo_inicio,5)
         time.sleep(1)
         GetRunS.close()
         print("Archivo enviado")
@@ -101,6 +103,7 @@ def ServerGet(g):
         s.sendto(hash_archivo.encode('utf-8'),clientAddr)
         print('Se envio el hash del archivo al cliente')
         print(hash_archivo)
+        print('El tiempo fue: '+str(tiempo_final))
 
 
     else:

@@ -124,6 +124,7 @@ while True:
                 print("Receiving packets will start now if file exists.")
                 # print(
                 #   "Timeout is 15 seconds so please wait for timeout at the end.")
+                tiempo_inicio=time.time()
                 while tillCC != 0:
                     ClientBData, clientbAddr = s.recvfrom(4096)
                     dataS = BigC.write(ClientBData)
@@ -132,7 +133,8 @@ while True:
                     h.update(ClientBData)
                     tillCC = tillCC - 1
                     
-                time.sleep(1)
+                #time.sleep(1)
+                tiempo_final = round(time.time() - tiempo_inicio,5)
                 BigC.close()
 
                 #espera el hash
@@ -146,6 +148,7 @@ while True:
                 else:
                     print('Los hash no coinciden')
 
+                print('El tiempo fue: '+str(tiempo_final))
                 print(
                     "New Received file closed. Check contents in your directory.")
     elif CL[0] == "list":
