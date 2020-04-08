@@ -104,7 +104,7 @@ while True:
 
         if len(text2) < 30:
             if CL[0] == "get":
-                BigC = open("Recibido-" + CL[1], "wb")
+                BigC = open("Recibido1-" + CL[1], "wb")
                 d = 0
                 try:
                     # number of paclets

@@ -54,15 +54,18 @@ def ServerExit():
 
 
 def ServerGet(g):
+    log = open ('C:/Users/HP DY/Documents/2020-1/Redes/LabRedesUDP/Server/log.txt','a')
+    log.write('\n'+time.ctime(time.time())+";")
+    
     print("Enviando confirmacion de comando")
     msg = "Comando Valido. Ejecutando "
     msgEn = msg.encode('utf-8')
     s.sendto(msgEn, clientAddr)
-    print("Mensaje enviado al ciente")
-    print(str(os.path))
-    print("En el Server, Get function")
 
     ruta = "C:/Users/HP DY/Documents/2020-1/Redes/LabRedesUDP/Server/" + str(g)
+
+    print("Mensaje enviado al ciente")
+    print("En el Server, Get function")
 
     if os.path.isfile(ruta):
         msg = "El archivo existe "
@@ -103,7 +106,10 @@ def ServerGet(g):
         s.sendto(hash_archivo.encode('utf-8'),clientAddr)
         print('Se envio el hash del archivo al cliente')
         print(hash_archivo)
-        print('El tiempo fue: '+str(tiempo_final))
+        #print('El tiempo fue: '+str(tiempo_final))
+        #print(g+","+str(sizeSS/1000)+","+str(clientAddr[0])+","+str(tiempo_final))
+        log.write(g+";"+str(sizeSS/1000)+";"+str(clientAddr[0])+";"+str(tiempo_final))
+        log.close()
 
 
     else:
